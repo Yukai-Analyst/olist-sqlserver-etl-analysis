@@ -2,7 +2,6 @@
 Olist电商项目：04_plot_result.py
 功能：连接SQL Server读取分析结果，使用matplotlib绘制业务图表，图片保存至output目录
 运行前提：数据库已经完整导入全部数据
-⚠️账号密码从本地.env读取，禁止硬编码提交github
 """
 import os
 import sys
