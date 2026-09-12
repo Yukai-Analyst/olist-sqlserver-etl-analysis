@@ -75,7 +75,6 @@ def validate_clean_data(filename, df):
     """
     report = {"filename": filename, "rows": len(df), "pk_violations": 0, "high_null_cols": []}
 
-    # 主键唯一性校验
     pk_cols = PRIMARY_KEY_MAP.get(filename, [])
     if pk_cols:
         valid_pk = [c for c in pk_cols if c in df.columns]
@@ -136,7 +135,6 @@ def print_quality_report(all_reports):
 
 
 if __name__ == "__main__":
-    # 前置校验
     validate_raw_files()
     os.makedirs(CLEAN_DIR, exist_ok=True)
 
@@ -153,15 +151,12 @@ if __name__ == "__main__":
         original_count = len(df)
         df_clean, dup_removed, review_dedup = clean_dataframe(filename, df)
 
-        # 数据质量校验
         report = validate_clean_data(filename, df_clean)
         all_reports.append(report)
 
-        # 写出清洗后的csv
         output_file = os.path.join(CLEAN_DIR, filename)
         df_clean.to_csv(output_file, index=False)
 
-        # 清洗摘要
         parts = [f"原始:{original_count}"]
         if dup_removed > 0:
             parts.append(f"完全重复去重:-{dup_removed}")

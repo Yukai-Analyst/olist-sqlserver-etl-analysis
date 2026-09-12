@@ -85,7 +85,6 @@ def validate_row_count(conn, table_name, expected_count):
 
 
 if __name__ == "__main__":
-    # 校验clean目录是否存在
     if not os.path.isdir(CLEAN_DIR):
         print(f"❌ clean目录不存在: {CLEAN_DIR}")
         print("   请先运行 python 01_clean_data.py")
@@ -94,12 +93,10 @@ if __name__ == "__main__":
     conn = get_db_conn()
 
     try:
-        # 清空已有数据
         print("正在清空已有数据...")
         clear_all_tables(conn)
         print("数据清空完成\n")
 
-        # 逐表导入
         success_count = 0
         fail_count = 0
         for table, csv_name in TABLE_CSV_MAPPING:
@@ -115,7 +112,6 @@ if __name__ == "__main__":
 
             try:
                 batch_insert_table(table, df, conn)
-                # 行数校验
                 if validate_row_count(conn, table, csv_rows):
                     print(f"  ✅ {table} 导入完成，行数校验通过")
                     success_count += 1
@@ -128,7 +124,6 @@ if __name__ == "__main__":
                 fail_count += 1
                 continue
 
-        # 汇总
         print(f"\n{'=' * 50}")
         print(f"导入完成: {success_count} 成功, {fail_count} 失败")
         if fail_count == 0:
