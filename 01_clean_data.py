@@ -1,6 +1,6 @@
 """
 Olist电商项目：01_clean_data.py
-功能：读取raw文件夹原始CSV，执行完整ETL清洗，输出clean文件夹清洗后csv
+读取raw文件夹原始CSV，执行完整ETL清洗，输出clean文件夹清洗后csv
 清洗处理内容：
 1. 空字符串、nan、NaN统一替换为None，数据库识别为NULL
 2. 字符串字段去除首尾空格，避免关联匹配失败
@@ -36,7 +36,7 @@ def validate_raw_files():
 
 def clean_dataframe(filename, df):
     """
-    增强版清洗函数
+    定义清洗函数
     :param filename: 当前处理的文件名，用来识别时间列
     :param df: 原始DataFrame
     :return: 清洗后DataFrame

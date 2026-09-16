@@ -1,7 +1,7 @@
 """
 Olist电商项目：02_create_and_load.py
-功能：读取clean目录下清洗完成的csv，批量插入SQL Server数据库
-⚠️重要：账号密码从.env读取，禁止硬编码提交github
+读取clean目录下清洗完成的csv，批量插入SQL Server数据库
+⚠️重要：账号密码从.env读取
 注意：
 1. 数据表有外键依赖，table_csv_mapping顺序不能修改！
 2. 先运行01_clean_data.py生成clean目录下csv，再运行本脚本
